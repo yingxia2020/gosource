@@ -1,0 +1,12 @@
+WEIGHT:1
+http://143.183.198.59/ecommerce/index.php[EXPECT]SPECweb2009: eCommerce - Home Page
+WEIGHT:1
+http://143.183.198.59/ecommerce/customize.php?c=CAD01&s=mlb&i=PDAs08[POST]DVDs=LCD-TVs-Model-1600
+WEIGHT:1
+http://143.183.198.59/ecommerce/customize.php?c=CAD01&s=mlb&i=PDAs08[POST]DVDs=LCD-TVs-Model-1600&customize_submit=Continue
+WEIGHT:1
+http://143.183.198.59/ecommerce/customize.php?c=CAD01&s=mlb&i=PDAs08[POST]DVDs=LCD-TVs-Model-1600&customize_submit=Continue
+WEIGHT:1
+http://143.183.198.59/ecommerce/customize.php?c=CAD01&s=mlb&i=PDAs08[POST]DVDs=LCD-TVs-Model-1600&customize_submit=AddtoCart
+WEIGHT:1
+http://143.183.198.59/ecommerce/cart.php?c=CAD01&s=mlb

@@ -1,0 +1,35 @@
+package main
+
+import (
+	"log"
+	"net"
+	"net/rpc"
+	"os/exec"
+)
+
+type Inference int
+
+func (l *Inference) GetInference(input string, result *string) error {
+	out, err := exec.Command("/root/app/openvino/script_run.sh", "-i", "/root/app/openvino/images_car/car_1.bmp").Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+	*result = string(out)
+	return nil
+}
+
+func main() {
+	addy, err := net.ResolveTCPAddr("tcp", ":8071")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	inbound, err := net.ListenTCP("tcp", addy)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	listener := new(Inference)
+	rpc.Register(listener)
+	rpc.Accept(inbound)
+}

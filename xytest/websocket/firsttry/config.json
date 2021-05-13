@@ -1,0 +1,19 @@
+{
+    "runoption": "ocr",
+    "runtimes": 1,
+    "hpamode": false,
+    "postprocess": false,
+    "ppoutputfile": "",
+    "autoloader": {
+        "initialclients": "2",
+        "clientstep": "5",
+        "lastclients": "40",
+        "SLA": "-1",
+        "timeinterval": "30"
+    },
+    "workload": {
+        "version": "v3.0",
+        "cpu": "4000m",
+        "maxpodnumber": "6"
+    }
+}

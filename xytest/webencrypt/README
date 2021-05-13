@@ -1,0 +1,2 @@
+ GOOS=js GOARCH=wasm go build -o crypt.wasm
+copy glue file from /usr/local/go/misc/wasm/wasm_exec.js

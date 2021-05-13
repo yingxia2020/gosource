@@ -1,0 +1,83 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"os/exec"
+	"strings"
+
+	"github.com/intel/goredis"
+	"github.com/valyala/fasthttp"
+)
+
+var client *goredis.MyRedis
+var cpuArch = 0
+
+func main() {
+	testcpu, err := exec.Command("lscpu").CombinedOutput()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if strings.Contains(string(testcpu), "avx512") {
+		cpuArch = 2
+	} else if strings.Contains(string(testcpu), "avx2") {
+		cpuArch = 1
+	}
+
+	// connect to redis server
+	client = goredis.InitializeRedis("redis-crypt-service.default.svc.cluster.local:6379")
+
+	s := &fasthttp.Server{
+		Handler:     handler,
+		Concurrency: fasthttp.DefaultConcurrency,
+	}
+
+	if err := s.ListenAndServe(":8074"); err != nil {
+		log.Fatalf("Error in ListenAndServe monte carlo server: %s", err)
+	}
+}
+
+func handler(ctx *fasthttp.RequestCtx) {
+	var out []byte
+	var err error
+
+	name := ctx.QueryArgs().Peek("name")
+	if len(name) == 0 {
+		log.Fatal("User name is missing")
+	}
+
+	contents, err := client.GetRawValue(string(name))
+	if err != nil || len(contents) == 0 {
+		log.Fatal("Could not find user profile to process")
+	}
+
+	tmpfile, err := ioutil.TempFile(".", "mcinput")
+	if err != nil {
+		log.Fatal(err)
+	}
+	ioutil.WriteFile(tmpfile.Name(), contents, 644)
+	// clean up
+	defer os.Remove(tmpfile.Name())
+
+	// added for testing purpose
+	cpuArch = 1
+	if cpuArch == 2 {
+		out, err = exec.Command("./MonteCarloInsideBlockingDP.avx512", "4", "4096", "262144", "4k", "0",
+			tmpfile.Name()).CombinedOutput()
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else if cpuArch == 1 {
+		out, err = exec.Command("./MonteCarloInsideBlockingDP.arch_avx2", "4", "4096", "262144", "4k", "0",
+			tmpfile.Name()).CombinedOutput()
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		out = []byte("CNB could only be run on CPUs with either AVX2 or AVX512 enabled\n")
+	}
+	fmt.Fprint(ctx, string(out))
+}

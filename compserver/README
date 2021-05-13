@@ -1,0 +1,4 @@
+ex1 directory contains the source codes to build executables ex1, excomp, exdecomp used in this workload.
+
+Comment out in main.cpp Compress or Decompress benchmark tests to build the excomp and exdecomp executables.
+If both tests are kept, build the ex1 executable.

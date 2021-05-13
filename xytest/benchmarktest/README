@@ -1,0 +1,13 @@
+go test -bench=.
+go test -run=Cipher -bench=.
+
+on m5:
+BenchmarkEcies-16            189           6313670 ns/op
+on m6g:
+BenchmarkEcies-16            136           8741944 ns/op
+ratio 1.39 only generate key once
+
+
+
+Cipher 1.20
+Password 1.28

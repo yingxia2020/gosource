@@ -1,0 +1,41 @@
+package main
+
+import (
+	"crypto/tls"
+	"fmt"
+	"net"
+	"net/smtp"
+
+	"golang.org/x/net/proxy"
+)
+
+func main() { Connect() }
+func Connect() {
+	dialer, err := Socks("proxy-chain.intel.com:911", "smtp.gmail.com:587")
+	if err != nil {
+		panic(err)
+	}
+	client, err := smtp.NewClient(dialer, "smtp.gmail.com:587")
+	if err != nil {
+		panic(err)
+	}
+	conf := &tls.Config{ServerName: "smtp.gmail.com"}
+	err = client.StartTLS(conf)
+	if err != nil {
+		panic(err)
+	}
+	auth := smtp.PlainAuth("", "rockcicak@gmail.com", "xy670924", "smtp.gmail.com:587")
+	if err = client.Auth(auth); err != nil {
+		panic(err)
+	}
+	fmt.Println("OK")
+}
+
+func Socks(socks, addr string) (r net.Conn, err error) {
+	Dial, err := proxy.SOCKS5("tcp", socks, nil, proxy.Direct)
+	r, err = Dial.Dial("tcp", addr)
+	if err != nil {
+		panic(err)
+	}
+	return
+}

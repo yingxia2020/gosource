@@ -1,0 +1,12 @@
+WEIGHT:3
+http://143.183.198.59//support/file.php?id=38722
+WEIGHT:2
+http://143.183.198.59/support/fileCatalog.php?id=1814&category=1&os=9&lang=24
+WEIGHT:1
+http://143.183.198.59/support/product.php?id=1814
+WEIGHT:4
+http://143.183.198.59/support/search.php?q=memory+cable+disk
+WEIGHT:3
+http://143.183.198.59/support/catalog.php?id=220
+WEIGHT:10
+http://143.183.198.59/support/index.php

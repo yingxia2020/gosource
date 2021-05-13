@@ -1,0 +1,50 @@
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "io/ioutil"
+    "strconv"
+    "strings"
+)
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+type Record struct {
+        Stock   float64 `json:"stock"`
+        Strike  float64 `json:"strike"`
+        Year    float64 `json:"year"`
+}
+
+
+func main() {
+    dat, err := ioutil.ReadFile("input.txt")
+    check(err)
+
+    var mc [4096]Record
+    var m1 []Record
+
+    lines := strings.Split(string(dat), "\n")
+    for i, line := range lines {
+        if strings.TrimSpace(line) == "" {
+            continue
+        }
+        tokens := strings.Fields(line)
+	v1, _ := strconv.ParseFloat(tokens[0], 64)
+	v2, _ := strconv.ParseFloat(tokens[1], 64)
+	v3, _ := strconv.ParseFloat(tokens[2], 64)
+        r := Record{Stock:v1, Strike:v2, Year:v3}
+        mc[i] = r
+    }
+
+    output, _ := json.MarshalIndent(mc, "", "    ")
+    err = ioutil.WriteFile("output.json", output, 0644)
+    check(err)
+
+    json.Unmarshal(output, &m1)
+    fmt.Println(len(m1), m1[0].Stock)
+}

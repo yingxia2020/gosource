@@ -1,0 +1,177 @@
+<!-- websockets.html -->
+<html>
+<head>
+  <title>CNB Release0.65</title>
+</head>
+<body>
+<h2>P2CA CLOUD NATIVE BENCHMARK</h2>
+<table>
+    <tr>
+        <td>
+            <label for="nodes">Num of Nodes</label>
+        </td>
+        <td>
+            <input type="text" id="nodes" name="nodenumber" value="1">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="cpu">CPU per Node</label>
+        </td>
+        <td>
+            <input type="text" id="cpu" name="cpunumber">
+        </td>
+    </tr> 
+    <tr>
+        <td>
+            <label>HPA Mode</label>
+        </td>
+        <td>
+            <label>
+                <input type="radio" value="true" name="hpa"> True</label>
+            <label>
+                <input type="radio" value="false" name="hpa" checked> False</label>
+        </td>
+    </tr>       
+    <tr>
+        <td>
+            <label>Workload</label>
+        </td>
+        <td>
+            <label>
+                <input type="radio" value="ocr" name="workload" checked> OCR</label>
+            <label>
+                <input type="radio" value="user" name="workload"> User</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="version">Image Version</label>
+        </td>
+        <td>
+            <input type="text" id="version" name="imageversion" value="v3.0">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="cpup">CPU per POD</label>
+        </td>
+        <td>
+            <input type="text" id="cpup" name="cpupod" value="4">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="iclients">Initial Clients</label>
+        </td>
+        <td>
+            <input type="text" id="iclients" name="initialclients">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="clientstep">Client Step</label>
+        </td>
+        <td>
+            <input type="text" id="clientstep" name="clientstep">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="lclients">Last Clients</label>
+        </td>
+        <td>
+            <input type="text" id="lclients" name="lastclients">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="time">Time Interval</label>
+        </td>
+        <td>
+            <input type="text" id="time" name="timeinterval" value="30">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="cpu">SLA</label>
+        </td>
+        <td>
+            <input type="text" id="sla" name="sla" value="-1">
+        </td>
+    </tr>        
+    <tr>
+        <td></td>
+        <td>
+            <input id="start" type="button" onclick="send()" value="Start">
+            <input type="button" onclick="reset()" value="Clear">
+        </td>
+    </tr>
+</table>
+<hr align="left" width="50%">
+<label>Logs</label><br>
+<textarea id="output" rows="30" cols="90"></textarea>
+</body>
+</html>
+<script>
+    var nodes = document.getElementById("nodes");
+    var cpu = document.getElementById("cpu");
+    var hpas = document.getElementsByName("hpa");
+    var workloads = document.getElementsByName("workload");
+    var version = document.getElementById("version");
+    var cpup = document.getElementById("cpup");
+    var iclients = document.getElementById("iclients");
+    var clientstep = document.getElementById("clientstep");
+    var lclients = document.getElementById("lclients");
+    var time = document.getElementById("time");
+    var sla = document.getElementById("sla");
+    var output = document.getElementById("output");
+    var start = document.getElementById("start")
+    var socket = new WebSocket("ws://10.3.55.150:8080/cnb");
+
+    socket.onopen = function () {
+        output.innerHTML += "Ready to go ......\n";
+    };
+
+    socket.onmessage = function (e) {
+        output.innerHTML += "-> " + e.data + "\n";
+        output.scrollTop = output.scrollHeight;
+        if (e.data.includes("***CNB completed") || e.data.includes("***Error found: ")) {
+            start.disabled = false;
+        }
+    };
+
+    function getHPAvalue() {
+    for (var i = 0, length = hpas.length; i < length; i++)
+        {
+            if (hpas[i].checked) {
+                return hpas[i].value
+            }
+        }
+    }
+
+    function getWorkloadvalue() {
+    for (var i = 0, length = workloads.length; i < length; i++)
+        {
+            if (workloads[i].checked) {
+                return workloads[i].value
+            }
+        }
+    }
+
+    function send() {
+        socket.send(nodes.value + "#" + cpu.value + "#" + getHPAvalue() + "#" + getWorkloadvalue()
+            + "#" + version.value + "#" + cpup.value + "#" + iclients.value + "#" + clientstep.value
+            + "#" + lclients.value + "#" + time.value + "#" + sla.value);
+        start.disabled = true;
+    }
+
+    function reset() {
+        cpu.value = "";
+        iclients.value = "";
+        clientstep.value = "";
+        lclients.value = ""; 
+        output.innerHTML =  "Ready to go ......\n";
+    }
+</script>
+

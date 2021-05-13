@@ -1,0 +1,6 @@
+WEIGHT:2
+http://143.183.198.59/bank/login.php[POST]userid=6&password=6
+WEIGHT:1
+http://143.183.198.59/bank/account_summary.php
+WEIGHT:1
+http://143.183.198.59/bank/change_profile.php[POST]address=1389+Olive Cirle&city=Wayland&state=OH&zip=59187&phone=phone=123-555-1212&email=customer663@isp.net

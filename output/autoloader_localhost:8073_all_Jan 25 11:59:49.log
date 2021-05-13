@@ -1,0 +1,4 @@
+2019/01/25 11:59:49 Start auto loader......
+2019/01/25 11:59:49 ./gobench -u http://localhost:8073 -c 1 -t 5 -e zzzzz
+
+2019/01/25 11:59:49 fork/exec ./gobench: permission denied

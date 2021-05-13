@@ -1,0 +1,2 @@
+WEIGHT:1
+http://143.183.198.59:8080/nginxserver.tar

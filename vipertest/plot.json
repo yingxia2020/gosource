@@ -1,0 +1,8 @@
+{
+	"Title": "CNB OCR Workload Results",
+	"Output": "myOCR.png",
+	"Plots": [
+		{"Legend": "Intelm5", "Data": "a.log"},
+		{"Legend": "AMDm5a", "Data": "b.log"}
+	]
+}

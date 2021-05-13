@@ -1,0 +1,27 @@
+package main
+
+import (
+	"log"
+
+	"gopkg.in/gomail.v2"
+)
+
+func main() {
+	m := gomail.NewMessage()
+	m.SetHeader("From", "rockcicak@yahoo.com")
+	m.SetHeader("To", "yxiay2k@yahoo.com", "ying.xia@gmail.com")
+	//m.SetAddressHeader("Cc", "dan@example.com", "Dan")
+	m.SetHeader("Subject", "Hello!")
+	m.SetBody("text/html", "Hello <b>Bob</b> and <i>Cora</i>!")
+	//m.Attach("/home/Alex/lolcat.jpg")
+
+	d := gomail.NewDialer("smtp.mail.yahoo.com", 465, "rockcicak", "xy670924")
+
+	// Send the email to Bob, Cora and Dan.
+	if err := d.DialAndSend(m); err != nil {
+		log.Fatal(err.Error())
+	}
+
+	log.Println("Mail sent successfully")
+
+}

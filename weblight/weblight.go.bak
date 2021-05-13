@@ -1,0 +1,57 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"log"
+	"math"
+
+	"github.com/valyala/fasthttp"
+)
+
+var (
+	addr     = flag.String("addr", ":8070", "TCP address to listen to")
+	compress = flag.Bool("compress", false, "Whether to enable transparent response compression")
+)
+
+func main() {
+	flag.Parse()
+
+	h := requestHandler
+	if *compress {
+		h = fasthttp.CompressHandler(h)
+	}
+
+	s := &fasthttp.Server{
+		Handler:     h,
+		Concurrency: fasthttp.DefaultConcurrency,
+	}
+	//s.DisableKeepalive = false
+
+	if err := s.ListenAndServe(*addr); err != nil {
+		log.Fatalf("Error in ListenAndServe: %s", err)
+	}
+}
+
+func requestHandler(ctx *fasthttp.RequestCtx) {
+	fmt.Fprintf(ctx, "Hello from web light!\n\n")
+
+	var x = 0.0001
+
+	for i := 0; i <= 1000000; i++ {
+		x += math.Sqrt(x)
+	}
+
+	fmt.Fprintf(ctx, "result=%f OK\n\n", x)
+
+	ctx.SetContentType("text/plain; charset=utf8")
+
+	// Set arbitrary headers
+	//ctx.Response.Header.Set("X-My-Header", "my-header-value")
+
+	// Set cookies
+	//var c fasthttp.Cookie
+	//c.SetKey("cookie-name")
+	//c.SetValue("cookie-value")
+	//ctx.Response.Header.SetCookie(&c)
+}

@@ -1,0 +1,18 @@
+{
+    "runoption": "mc",
+    "iterations": 1,
+    "hpamode": false,
+    "postprocess": false,
+    "ppoutputfile": "",
+    "autoloader": {
+        "initialclients": "1",
+        "clientstep": "1",
+        "lastclients": "-1",
+        "SLA": "3000",
+        "timeinterval": "30"
+    },
+    "workload": {
+        "version": "v2.0",
+        "cpurequests": "4"
+    }
+}

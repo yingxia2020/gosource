@@ -1,0 +1,170 @@
+// Example static file server.
+//
+// Serves static files from the given directory.
+// Exports various stats at /stats .
+package main
+
+import (
+	"expvar"
+	"flag"
+	"fmt"
+	"log"
+	"math"
+	"math/rand"
+	"os"
+
+	"github.com/valyala/fasthttp"
+	"github.com/valyala/fasthttp/expvarhandler"
+)
+
+var (
+	addr               = flag.String("addr", ":8070", "TCP address to listen to")
+	addrTLS            = flag.String("addrTLS", "", "TCP address to listen to TLS (aka SSL or HTTPS) requests. Leave empty for disabling TLS")
+	byteRange          = flag.Bool("byteRange", false, "Enables byte range requests if set to true")
+	certFile           = flag.String("certFile", "./ssl-cert-snakeoil.pem", "Path to TLS certificate file")
+	compress           = flag.Bool("compress", false, "Enables transparent response compression if set to true")
+	dir                = flag.String("dir", "/usr/share/fileserver", "Directory to serve static files from")
+	generateIndexPages = flag.Bool("generateIndexPages", true, "Whether to generate directory index pages")
+	keyFile            = flag.String("keyFile", "./ssl-cert-snakeoil.key", "Path to TLS key file")
+	vhost              = flag.Bool("vhost", false, "Enables virtual hosting by prepending the requested path with the requested hostname")
+)
+
+// Various counters - see https://golang.org/pkg/expvar/ for details.
+var (
+	// Counter for total number of fs calls
+	fsCalls = expvar.NewInt("fsCalls")
+
+	// Counters for various response status codes
+	fsOKResponses          = expvar.NewInt("fsOKResponses")
+	fsNotModifiedResponses = expvar.NewInt("fsNotModifiedResponses")
+	fsNotFoundResponses    = expvar.NewInt("fsNotFoundResponses")
+	fsOtherResponses       = expvar.NewInt("fsOtherResponses")
+
+	// Total size in bytes for OK response bodies served.
+	fsResponseBodyBytes = expvar.NewInt("fsResponseBodyBytes")
+)
+
+const (
+	RANDOMTEXT = `bfeWQobe:9oY+vO.DjRV:V@JBZ)Fvj5UqWg?BrppM:'u0/y[cgi9_<,L4I8mQ>\
+13fnp|@zH{'R7_VFuZ4M3Om@hMCh@suVsxA(3msi2oVS{kc)hTyc[#tRBZ"isOH
+(d%nWAR48*rqFKEQH&pWIgl*DLMpbXah3C]T4[|Rq\@{6w"b<Q'<i\D,||W"ECx
+!sCmnp,qeNK^46L1tE8n12"1Z,<gGh-2!R\*y,|<Mcl-01v$U\w*09qW9o>Bn+q
+WWw+yW0jp7SEN8HE2Dr.*yv_yFC'P3B'$f6&)8j%G7lqR[Fn0dKw^I'-'CH\gIB
+<8:zK0t<U&bzh2E)2T"|fR*:*qPjYy|!u@nq]Ch;r,=ddh?t@-,f,p&|g,@C'W1
+q*G7X!pBci_NEfR)7NMqmkj=Ai8K1zgTH/IA9JgesNNXe81>^{)[Yf)[Y>+5;43
+9B\':)5p3^{;6R,-vxo9dkH$I2bNI#62,'+,<OgG*)iSJ3/pv^xF2,l2tz!!cx{
+:.V$SD?*ePM';x7).p0,7q>S#07{9J6pn0cP3P_-nv__Jyf;Kzz[GhXI8Ci\2?K
+4h4|;>!PD'^H?F^2,QgX&k.6SgCJTM>KMnqS!hC?8s+N"O.EB'*2'$I=O|p.qmg
+-.p>8DXn,CFP#w^J4?xrx${1@W)xoww9NMwXSbQ:\:^{"{vtVZ9dcV+X/S&N\61`
+
+	genPageTitle = "General Page Title"
+)
+
+func main() {
+	// Parse command-line flags.
+	flag.Parse()
+
+	// Setup FS handler
+	fs := &fasthttp.FS{
+		Root:               *dir,
+		IndexNames:         []string{"index.html"},
+		GenerateIndexPages: *generateIndexPages,
+		Compress:           *compress,
+		AcceptByteRange:    *byteRange,
+	}
+	if *vhost {
+		fs.PathRewrite = fasthttp.NewVHostPathRewriter(0)
+	}
+	fsHandler := fs.NewRequestHandler()
+
+	// Create RequestHandler serving server stats on /stats and files
+	// on other requested paths.
+	// /stats output may be filtered using regexps. For example:
+	//
+	//   * /stats?r=fs will show only stats (expvars) containing 'fs'
+	//     in their names.
+	requestHandler := func(ctx *fasthttp.RequestCtx) {
+		switch string(ctx.Path()) {
+		case "/stats":
+			expvarhandler.ExpvarHandler(ctx)
+		case "/calc":
+			calculateHandler(ctx)
+		case "/general":
+			generalHandler(ctx)
+		default:
+			fsHandler(ctx)
+			updateFSCounters(ctx)
+		}
+	}
+
+	// Start HTTP server.
+	if len(*addr) > 0 {
+		log.Printf("Starting HTTP server on %q", *addr)
+		go func() {
+			if err := fasthttp.ListenAndServe(*addr, requestHandler); err != nil {
+				log.Fatalf("error in ListenAndServe: %s", err)
+			}
+		}()
+	}
+
+	// Start HTTPS server.
+	if len(*addrTLS) > 0 {
+		log.Printf("Starting HTTPS server on %q", *addrTLS)
+		go func() {
+			if err := fasthttp.ListenAndServeTLS(*addrTLS, *certFile, *keyFile, requestHandler); err != nil {
+				log.Fatalf("error in ListenAndServeTLS: %s", err)
+			}
+		}()
+	}
+
+	log.Printf("Serving files from directory %q", *dir)
+	log.Printf("See stats at http://%s/stats", *addr)
+
+	// Wait forever.
+	select {}
+}
+
+func updateFSCounters(ctx *fasthttp.RequestCtx) {
+	// Increment the number of fsHandler calls.
+	fsCalls.Add(1)
+
+	// Update other stats counters
+	resp := &ctx.Response
+	switch resp.StatusCode() {
+	case fasthttp.StatusOK:
+		fsOKResponses.Add(1)
+		fsResponseBodyBytes.Add(int64(resp.Header.ContentLength()))
+	case fasthttp.StatusNotModified:
+		fsNotModifiedResponses.Add(1)
+	case fasthttp.StatusNotFound:
+		fsNotFoundResponses.Add(1)
+	default:
+		fsOtherResponses.Add(1)
+	}
+}
+
+func calculateHandler(ctx *fasthttp.RequestCtx) {
+	host, err := os.Hostname()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Fprintf(ctx, "Hello from %v!\n\n", host)
+
+	var x = 0.0001
+
+	for i := 0; i <= 1000000+rand.Intn(100); i++ {
+		x += math.Sqrt(x)
+	}
+
+	fmt.Fprintf(ctx, "result=%f OK\n\n", x)
+}
+
+func generalHandler(ctx *fasthttp.RequestCtx) {
+	fmt.Fprintf(ctx, "%s\n", genPageTitle)
+
+	round := rand.Intn(5) + 5
+	for i := 0; i < round; i++ {
+		fmt.Fprint(ctx, RANDOMTEXT)
+	}
+	fmt.Fprint(ctx, "\n")
+}

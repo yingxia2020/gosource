@@ -1,0 +1,84 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"log"
+	"math"
+	"math/rand"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+)
+
+var (
+	addr    = flag.String("addr", ":8070", "TCP address to listen to")
+	jobs    = make(chan int, JOBSIZE)
+	results = make(chan string, JOBSIZE)
+	jobID   = 0
+)
+
+const (
+	JOBSIZE    = 100
+	WORKERSIZE = 20
+)
+
+func worker(id int, jobs <-chan int, results chan<- string) {
+	for j := range jobs {
+		fmt.Println("worker", id, "started  job", j)
+		var x = 0.0001
+
+		for i := 0; i <= 1000000+rand.Intn(100); i++ {
+			x += math.Sqrt(x)
+		}
+
+		fmt.Println("worker", id, "finished job", j)
+		results <- fmt.Sprintf("job id %d, result %f", id, x)
+	}
+}
+
+func main() {
+	flag.Parse()
+
+	var gracefulStop = make(chan os.Signal)
+	signal.Notify(gracefulStop, syscall.SIGTERM)
+	signal.Notify(gracefulStop, syscall.SIGINT)
+	go func() {
+		sig := <-gracefulStop
+		close(jobs)
+		close(results)
+		fmt.Printf("caught sig: %+v\n", sig)
+		fmt.Println("Wait for 1 second to finish processing")
+		time.Sleep(1 * time.Second)
+		os.Exit(0)
+	}()
+
+	// start workers first and run some jobs
+	for w := 1; w <= WORKERSIZE; w++ {
+		go worker(w, jobs, results)
+		jobs <- jobID
+		jobID++
+	}
+
+	http.Handle("/", prometheus.InstrumentHandlerFunc("weblight", requestHandler))
+	http.Handle("/metrics", promhttp.Handler())
+
+	if err := http.ListenAndServe(*addr, nil); err != nil {
+		log.Fatalf("Error in ListenAndServe: %s", err)
+	}
+}
+
+func requestHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello from web light!\n\n")
+
+	// Add one job to be used by later request
+	jobs <- jobID
+	jobID++
+
+	fmt.Fprintf(w, "Run result %s!\n\n", <-results)
+}

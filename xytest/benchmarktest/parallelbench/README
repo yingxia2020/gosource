@@ -1,0 +1,45 @@
+ubuntu@ip-10-0-0-57:~/go/src/github.com/intel/parallelbench$ go run main.go
+2020/09/17 22:39:38 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 16
+2020/09/17 22:39:41 done benchmark: score 1700, elapsed 3.010487266s = 564.692639 / sec
+2020/09/17 22:39:41 &benchmark.Result{Score:1700, Elapsed:3010487266}
+ubuntu@ip-10-0-0-57:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=2 go run main.go
+2020/09/17 22:41:40 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 2
+2020/09/17 22:41:43 done benchmark: score 662, elapsed 3.022257513s = 219.041560 / sec
+2020/09/17 22:41:43 &benchmark.Result{Score:662, Elapsed:3022257513}
+ubuntu@ip-10-0-0-57:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=4 go run main.go
+2020/09/17 22:42:30 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 4
+2020/09/17 22:42:33 done benchmark: score 1197, elapsed 3.017995339s = 396.620891 / sec
+2020/09/17 22:42:33 &benchmark.Result{Score:1197, Elapsed:3017995339}
+ubuntu@ip-10-0-0-57:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=1 go run main.go
+2020/09/17 22:42:46 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 1
+2020/09/17 22:42:49 done benchmark: score 359, elapsed 3.057249081s = 117.425826 / sec
+2020/09/17 22:42:49 &benchmark.Result{Score:359, Elapsed:3057249081}
+ubuntu@ip-10-0-0-57:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=8 go run main.go
+2020/09/17 22:59:34 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 8
+2020/09/17 22:59:37 done benchmark: score 1795, elapsed 3.012034007s = 595.942807 / sec
+2020/09/17 22:59:37 &benchmark.Result{Score:1795, Elapsed:3012034007}
+
+above is Intel below is graviton 2
+until GOMAXPROCS=1,2,4 ratio is around 1.4. 
+
+ubuntu@node1:~/go/src/github.com/intel/parallelbench$ go run main.go
+2020/09/17 22:41:08 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 16
+2020/09/17 22:41:11 done benchmark: score 1615, elapsed 3.015940851s = 535.487955 / sec
+2020/09/17 22:41:11 &benchmark.Result{Score:1615, Elapsed:3015940851}
+ubuntu@node1:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=2 go run main.go
+2020/09/17 22:41:53 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 2
+2020/09/17 22:41:56 done benchmark: score 467, elapsed 3.036426515s = 153.799210 / sec
+2020/09/17 22:41:56 &benchmark.Result{Score:467, Elapsed:3036426515}
+ubuntu@node1:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=4 go run main.go
+2020/09/17 22:42:22 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 4
+2020/09/17 22:42:25 done benchmark: score 852, elapsed 3.021770886s = 281.953871 / sec
+2020/09/17 22:42:25 &benchmark.Result{Score:852, Elapsed:3021770886}
+ubuntu@node1:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=1 go run main.go
+2020/09/17 22:42:56 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 1
+2020/09/17 22:42:59 done benchmark: score 255, elapsed 3.07254737s = 82.993025 / sec
+2020/09/17 22:42:59 &benchmark.Result{Score:255, Elapsed:3072547370}
+ubuntu@node1:~/go/src/github.com/intel/parallelbench$ GOMAXPROCS=8 go run main.go
+2020/09/17 22:58:06 starting benchmark: concurrency: 10, time: 3s, GOMAXPROCS: 8
+2020/09/17 22:58:09 done benchmark: score 1456, elapsed 3.013616129s = 483.140499 / sec
+2020/09/17 22:58:09 &benchmark.Result{Score:1456, Elapsed:3013616129}
+

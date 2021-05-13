@@ -1,0 +1,2 @@
+GOOS=js GOARCH=wasm go build -o cpuinfo.wasm
+copy glue file from /usr/local/go/misc/wasm/wasm_exec.js

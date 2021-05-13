@@ -1,0 +1,5 @@
+WEIGHT:3
+http://10.233.37.214:8070/calc[EXPECT]OK
+WEIGHT:1
+http://10.233.37.214:8070/ocr[EXPECT]mformation
+

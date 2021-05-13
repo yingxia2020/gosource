@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="46c529da-1620-4ee9-a8b0-c59cdd9f2204" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1387223179">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.3" value="5" />
+          <entry key="project.open.time.4" value="7" />
+          <entry key="project.opened" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="2" />
+          <entry key="go" value="290" />
+          <entry key="html" value="5" />
+          <entry key="qt_deploy" value="1" />
+          <entry key="sh" value="1" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="2" />
+          <entry key="Go" value="290" />
+          <entry key="HTML" value="5" />
+          <entry key="PLAIN_TEXT" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="16" />
+          <entry key="go" value="52104" />
+          <entry key="html" value="724" />
+          <entry key="sh" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="16" />
+          <entry key="Go" value="52104" />
+          <entry key="HTML" value="724" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.go.postfix.template.usages.trigger">
+        <counts>
+          <entry key=".append" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fileserver/fileserver.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8586">
+              <caret line="496" column="25" selection-start-line="496" selection-start-column="19" selection-end-line="496" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dbserver/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="738">
+              <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../xytest/cassandratest/server.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="864">
+              <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+              <folding>
+                <element signature="e#244#307#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../userserver/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+              <folding>
+                <element signature="e#244#378#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../gocql/gocql/frame.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3042">
+              <caret line="179" column="4" selection-start-line="179" selection-start-column="4" selection-end-line="179" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/autoloader/autoloader.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-148">
+              <caret line="566" column="1" selection-start-line="566" selection-start-column="1" selection-end-line="566" selection-end-column="1" />
+              <folding>
+                <element signature="e#244#500#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../gopkg.in/mgo.v2/session.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8406">
+              <caret line="483" column="36" selection-start-line="483" selection-start-column="29" selection-end-line="483" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>timeth</find>
+      <find>New</find>
+      <find>post</find>
+      <find>onC</find>
+      <find>Keys</find>
+      <find>Keys(</find>
+      <find>key</find>
+      <find>TagSize</find>
+      <find>8078</find>
+      <find>mcHandler</find>
+      <find>json.</find>
+      <find>rand</find>
+      <find>Run result</find>
+      <find>8079</find>
+      <find>userh</find>
+      <find>&quot;http://ckm-service.default.svc.cluster.local:8077&quot;</find>
+      <find>http://ckm-service.default.svc.cluster.local:8077&quot;</find>
+      <find>runtimes</find>
+      <find>css</find>
+      <find>promhttp_metric_handler_requests_total</find>
+      <find>http://user-service.default.svc.cluster.local</find>
+      <find>result.cpu</find>
+      <find>master</find>
+      <find>maxPod</find>
+      <find>809</find>
+      <find>db-service</find>
+      <find>15</find>
+      <find>mongodb</find>
+      <find>db-ser</find>
+      <find>Mongo</find>
+    </findStrings>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../cryptserver/opensslcrypt_test.go" />
+        <option value="$PROJECT_DIR$/../cryptserver/opensslcrypt.go" />
+        <option value="$PROJECT_DIR$/../compserver/server.go" />
+        <option value="$PROJECT_DIR$/../sha256/sha256comp.go" />
+        <option value="$PROJECT_DIR$/../sha256comp/sha256comp.go" />
+        <option value="$PROJECT_DIR$/../email/sendmail.go" />
+        <option value="$PROJECT_DIR$/../mathquiz/main.go" />
+        <option value="$PROJECT_DIR$/../vipertest/main.go" />
+        <option value="$PROJECT_DIR$/../csvtest/main.go" />
+        <option value="$PROJECT_DIR$/../multiply/multiply.go" />
+        <option value="$PROJECT_DIR$/../fileupload/fuserver/server.go" />
+        <option value="$PROJECT_DIR$/../fileupload/fuclient/client.go" />
+        <option value="$PROJECT_DIR$/../ocrserver/server.go" />
+        <option value="$PROJECT_DIR$/../opensslcrypt/main.go" />
+        <option value="$PROJECT_DIR$/../httpjson/jsonserver/main.go" />
+        <option value="$PROJECT_DIR$/../httpjson/jsonclient/main.go" />
+        <option value="$PROJECT_DIR$/../transerver/server.go" />
+        <option value="$PROJECT_DIR$/../gomongo/main.go" />
+        <option value="$PROJECT_DIR$/../goredis/main.go" />
+        <option value="$PROJECT_DIR$/../goredis/cache/cache.go" />
+        <option value="$PROJECT_DIR$/../ocroldserver/server.go" />
+        <option value="$PROJECT_DIR$/../xytest/goremove/main.go" />
+        <option value="$PROJECT_DIR$/../mathbrush/divide/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/goqt/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/session/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/websocket/firsttry/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/resulttable/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/webkafka/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/httpmux/main.go" />
+        <option value="$PROJECT_DIR$/../dbserver/cache.go" />
+        <option value="$PROJECT_DIR$/../myredis/cache.go" />
+        <option value="$PROJECT_DIR$/../xytest/goredis/cache/cache.go" />
+        <option value="$PROJECT_DIR$/../xytest/datatojson/main.go" />
+        <option value="$PROJECT_DIR$/../cryptserver/opensslgcm_test.go" />
+        <option value="$PROJECT_DIR$/../cryptserver/opensslgcm.go" />
+        <option value="$PROJECT_DIR$/../xytest/gcmcrypt/main.go" />
+        <option value="$PROJECT_DIR$/../goredis/cache.go" />
+        <option value="$PROJECT_DIR$/../cryptserver/server.go" />
+        <option value="$PROJECT_DIR$/../postprocess/postprocess.go" />
+        <option value="$PROJECT_DIR$/../cnbrun/cnbrun.go" />
+        <option value="$PROJECT_DIR$/../../prometheus/client_golang/prometheus/promhttp/http.go" />
+        <option value="$PROJECT_DIR$/../xytest/prometheus/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/gochart/main.go" />
+        <option value="$PROJECT_DIR$/../fileserver/fileserver.go" />
+        <option value="$PROJECT_DIR$/../cnbweb/main.go" />
+        <option value="$PROJECT_DIR$/../cnbweb/cnbweb.html" />
+        <option value="$PROJECT_DIR$/../mcserver/server.go" />
+        <option value="$PROJECT_DIR$/../dbserver/main.go" />
+        <option value="$PROJECT_DIR$/../xytest/cassandratest/server.go" />
+        <option value="$PROJECT_DIR$/../userserver/main.go" />
+        <option value="$PROJECT_DIR$/autoloader/autoloader.go" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="82" />
+    <option name="y" value="39" />
+    <option name="width" value="1759" />
+    <option name="height" value="990" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gobench" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gobench" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gobench" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gobench" type="462c0819:PsiDirectoryNode" />
+              <item name="autoloader" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dbserver/main.go" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="82" y="39" width="1759" height="990" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22900763" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.4978261" visible="true" weight="0.3020214" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932706" weight="0.32936978" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5021739" side_tool="true" weight="0.38" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../dbserver/cache.go" />
+    <entry file="file://$PROJECT_DIR$/../redis/cache.go" />
+    <entry file="file://$PROJECT_DIR$/../myredis/cache.go" />
+    <entry file="file://$PROJECT_DIR$/../xytest/httpmux/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/goredis/cache/cache.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../mcserver/montecarlo/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../preinstall/preinstall.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2457">
+          <caret line="164" column="107" selection-start-line="164" selection-start-column="19" selection-end-line="164" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cleanup/cleanup.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/webkafka/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2754">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/goredis/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cryptserver/opensslcrypt_test.go" />
+    <entry file="file://$PROJECT_DIR$/../cryptserver/opensslcrypt.go" />
+    <entry file="file://$PROJECT_DIR$/../xytest/datatojson/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cryptserver/opensslgcm_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../go-redis/redis/command.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="577" column="22" selection-start-line="577" selection-start-column="22" selection-end-line="577" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../go-redis/redis/commands.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="828" column="18" selection-start-line="828" selection-start-column="18" selection-end-line="828" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../spacemonkeygo/openssl/ciphers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1404">
+          <caret line="221" column="4" selection-start-line="221" selection-start-column="4" selection-end-line="221" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/io/ioutil/ioutil.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1483">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cryptserver/opensslgcm.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="210" lean-forward="true" selection-start-line="210" selection-end-line="210" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/gcmcrypt/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2970">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/io/ioutil/tempfile.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-25">
+          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/strconv/atof.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="532" column="5" selection-start-line="532" selection-start-column="5" selection-end-line="532" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cryptserver/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1764">
+          <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../valyala/fasthttp/http.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../valyala/fasthttp/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="428" column="15" selection-start-line="428" selection-start-column="12" selection-end-line="428" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/net/http/request.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="801" column="5" selection-start-line="801" selection-start-column="5" selection-end-line="801" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../prometheus/client_golang/prometheus/counter.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../prometheus/client_golang/prometheus/promhttp/http.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3406">
+          <caret line="224" column="28" selection-start-line="224" selection-start-column="28" selection-end-line="224" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../prometheus/client_golang/prometheus/promauto/auto.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-27">
+          <caret line="139" column="23" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../wcharczuk/go-chart/chart.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../wcharczuk/go-chart/style.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../wcharczuk/go-chart/xaxis.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../wcharczuk/go-chart/series.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/gochart/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/prometheus/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="58" column="34" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../valyala/fasthttp/expvarhandler/expvar.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/strings/strings.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="847" column="5" selection-start-line="847" selection-start-column="5" selection-end-line="847" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gobench.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7956">
+          <caret line="474" column="28" selection-start-line="474" selection-start-column="28" selection-end-line="474" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cnbweb/cnbweb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="91" column="55" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cnbweb/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="198" column="23" selection-start-line="198" selection-start-column="23" selection-end-line="198" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../cnbrun/cnbrun.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../goredis/cache.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../postprocess/postprocess.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../mcserver/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="64" column="21" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fileserver/fileserver.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8586">
+          <caret line="496" column="25" selection-start-line="496" selection-start-column="19" selection-end-line="496" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dbserver/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../xytest/cassandratest/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+          <folding>
+            <element signature="e#244#307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../userserver/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+          <folding>
+            <element signature="e#244#378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../gocql/gocql/frame.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3042">
+          <caret line="179" column="4" selection-start-line="179" selection-start-column="4" selection-end-line="179" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../gopkg.in/mgo.v2/session.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8406">
+          <caret line="483" column="36" selection-start-line="483" selection-start-column="29" selection-end-line="483" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autoloader/autoloader.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="566" column="1" selection-start-line="566" selection-start-column="1" selection-end-line="566" selection-end-column="1" />
+          <folding>
+            <element signature="e#244#500#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,3 @@
+WEIGHT:1
+http://10.3.55.159:30848/ocr[EXPECT]mformation[THOLD]350
+

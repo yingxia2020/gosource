@@ -1,0 +1,58 @@
+/* Copyright (C) Intel Corporation
+ *
+ * All Rights Reserved
+ *
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ *
+ * Written by Ying Xia <ying.xia@intel.com>, 2019
+ */
+
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
+	"strings"
+)
+
+const HEADER = `/* Copyright (C) Intel Corporation
+ *
+ * All Rights Reserved
+ *
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ *
+ * Written by Ying Xia <ying.xia@intel.com>, 2019
+ */
+
+`
+
+func main() {
+	var files []string
+
+	root := "."
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		if strings.HasSuffix(path, ".go") {
+			files = append(files, path)
+		}
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+	for _, file := range files {
+		content, err := ioutil.ReadFile(file)
+		if err != nil {
+			log.Fatal(err)
+		}
+		err = ioutil.WriteFile(file, []byte(HEADER+string(content)), 0664)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("Finished add header for:", file)
+	}
+}

@@ -1,0 +1,102 @@
+/* Copyright (C) Intel Corporation
+ *
+ * All Rights Reserved
+ *
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ *
+ * Written by Ying Xia <ying.xia@intel.com>, 2019
+ */
+
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"os/exec"
+	"strconv"
+
+	"github.com/intel/goredis"
+	"github.com/valyala/fasthttp"
+)
+
+var client *goredis.MyRedis
+var cpuArch = 0
+var num_threads = os.Getenv("OMP_NUM_THREADS")
+var divisor = os.Getenv("MC_WL_DIVISOR")
+
+func main() {
+	// connect to redis server
+	client = goredis.InitializeRedis("redis-crypt-service.default.svc.cluster.local:6379")
+
+	s := &fasthttp.Server{
+		Handler:     handler,
+		Concurrency: fasthttp.DefaultConcurrency,
+	}
+
+	if err := s.ListenAndServe(":8074"); err != nil {
+		log.Fatalf("Error in ListenAndServe monte carlo server: %s", err)
+	}
+}
+
+func getLoad() string {
+	if len(divisor) == 0 || divisor == "1" {
+		return "4096"
+	}
+
+	switch divisor {
+	case "2":
+		return "2048"
+	case "4":
+		return "1024"
+	case "8":
+		return "512"
+	case "16":
+		return "256"
+	case "32":
+		return "128"
+	default:
+		log.Println("Not a valid divisor value")
+	}
+	//default value is 4096
+	return "4096"
+}
+
+func handler(ctx *fasthttp.RequestCtx) {
+	var out []byte
+	var err error
+
+	name := ctx.QueryArgs().Peek("name")
+	if len(name) == 0 {
+		log.Fatal("User name is missing")
+	}
+
+	contents, err := client.GetRawValue(string(name))
+	if err != nil || len(contents) == 0 {
+		log.Fatal("Could not find user profile to process")
+	}
+
+	tmpfile, err := ioutil.TempFile(".", "mcinput")
+	if err != nil {
+		log.Fatal(err)
+	}
+	ioutil.WriteFile(tmpfile.Name(), contents, 644)
+	// clean up
+	defer os.Remove(tmpfile.Name())
+
+	tmp, err := strconv.Atoi(num_threads)
+	if len(num_threads) == 0 || err != nil || tmp < 1 {
+		log.Println(num_threads, " is not a valid value, use 4 instead")
+		num_threads = "4"
+	}
+
+	// arm64, adjust the load
+	out, err = exec.Command("./MonteCarloInsideBlockingDP.arm64", num_threads, "1024", "65536", "1k", "0",
+		tmpfile.Name()).CombinedOutput()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Fprint(ctx, string(out))
+}

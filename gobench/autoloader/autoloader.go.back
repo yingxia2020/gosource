@@ -1,0 +1,194 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"log"
+	"os"
+	"os/exec"
+	"os/signal"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+)
+
+var (
+	clients      int
+	url          string
+	urlsFilePath string
+	clientStep   int
+	timeInterval int
+)
+
+type Result struct {
+	clients       int
+	requests      int
+	success       int
+	networkFailed int
+	badFailed     int
+	rate          int
+}
+
+var results []*Result
+var DEBUG = true
+
+func init() {
+	flag.IntVar(&clients, "c", 100, "Number of start concurrent clients")
+	flag.StringVar(&url, "u", "", "URL")
+	flag.StringVar(&urlsFilePath, "f", "", "URL's file path (line seperated)")
+	flag.IntVar(&clientStep, "ci", 100, "Client number increase step")
+	flag.IntVar(&timeInterval, "ti", 120, "Time interval between tests (in seconds)")
+}
+
+func printResults(startTime time.Time) {
+	elapsed := int64(time.Since(startTime).Seconds())
+
+	if elapsed == 0 {
+		elapsed = 1
+	}
+
+	for _, result := range results {
+		fmt.Printf("Clients:                        %10d clts\n", result.clients)
+		fmt.Printf("Requests:                       %10d hits\n", result.requests)
+		fmt.Printf("Successful requests:            %10d hits\n", result.success)
+		fmt.Printf("Network failed:                 %10d hits\n", result.networkFailed)
+		fmt.Printf("Bad requests failed (!2xx):     %10d hits\n", result.badFailed)
+		fmt.Printf("Successful requests rate:       %10d hits/sec\n", result.rate)
+		fmt.Printf("===========================================================\n")
+	}
+
+	fmt.Println()
+	fmt.Printf("Total Test Time:                %10d sec\n", elapsed)
+}
+
+func inputCheck() {
+	if urlsFilePath == "" && url == "" {
+		fmt.Println("URL or URL file must be provided")
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	if timeInterval == -1 {
+		fmt.Println(" period must be provided")
+		flag.Usage()
+		os.Exit(1)
+	}
+}
+
+func parseOutput(out string, clients int) int {
+	result := &Result{}
+	result.clients = clients
+	if DEBUG {
+		fmt.Println(out)
+	}
+	outArray := strings.Split(out, "\n")
+	for _, line := range outArray {
+		if strings.Contains(line, "Requests:") {
+			tokens := strings.Fields(line)
+			temp, err := strconv.Atoi(tokens[1])
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			result.requests = temp
+		}
+		if strings.Contains(line, "Successful requests:") {
+			tokens := strings.Fields(line)
+			temp, err := strconv.Atoi(tokens[2])
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			result.success = temp
+		}
+		if strings.Contains(line, "Network failed:") {
+			tokens := strings.Fields(line)
+			temp, err := strconv.Atoi(tokens[2])
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			result.networkFailed = temp
+		}
+		if strings.Contains(line, "Bad requests failed:") {
+			tokens := strings.Fields(line)
+			temp, err := strconv.Atoi(tokens[4])
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			result.badFailed = temp
+		}
+		if strings.Contains(line, "Successful requests rate:") {
+			tokens := strings.Fields(line)
+			temp, err := strconv.Atoi(tokens[3])
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			result.rate = temp
+			results = append(results, result)
+		}
+		return result.success
+	}
+	return 0
+}
+
+func main() {
+	startTime := time.Now()
+
+	signalChannel := make(chan os.Signal, 2)
+	signal.Notify(signalChannel, os.Interrupt)
+	go func() {
+		_ = <-signalChannel
+		printResults(startTime)
+		os.Exit(0)
+	}()
+
+	flag.Parse()
+
+	inputCheck()
+
+	goMaxProcs := os.Getenv("GOMAXPROCS")
+
+	if goMaxProcs == "" {
+		runtime.GOMAXPROCS(runtime.NumCPU())
+	}
+
+	fmt.Println("Start auto loader......")
+
+	currentClient := clients
+	previousTP := 0
+	var out []byte
+	var err error
+	for true {
+		if urlsFilePath == "" {
+			if DEBUG {
+				fmt.Printf("./gobench -u %s -c %d -t %d\n", url, currentClient, timeInterval)
+			}
+			out, err = exec.Command("./gobench", "-u", url, "-c",
+				fmt.Sprintf("%d", currentClient), "-t",
+				fmt.Sprintf("%d", timeInterval)).Output()
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+		} else {
+			if DEBUG {
+				fmt.Printf("./gobench -f %s -c %d -t %d\n", urlsFilePath, currentClient, timeInterval)
+			}
+			out, err = exec.Command("./gobench", "-f", urlsFilePath, "-c",
+				fmt.Sprintf("%d", currentClient), "-t",
+				fmt.Sprintf("%d", timeInterval)).Output()
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+		}
+
+		currentTP := parseOutput(string(out), currentClient)
+		if currentTP > previousTP {
+			previousTP = currentTP
+		} else {
+			break // get out of the loop
+		}
+		currentClient += clientStep
+	}
+
+	fmt.Println("\n\nResults Summary:")
+	printResults(startTime)
+}
