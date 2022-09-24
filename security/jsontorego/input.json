@@ -1,0 +1,9 @@
+{
+    "amber_sgx_mrenclave": "bab91f200038076ac25f87de0ca67472443c2ebe17ed9ba195314e609038f51ab",
+    "amber_sgx_mrsigner": "d412a4f07ef83892a5915fb2ab584be31e186e5a4f95ab5f6950fd4eb8694d7b",
+    "amber_sgx_isvsvn": 1,
+    "amber_sgx_isvprodid": 0,
+    "amber_sgx_is_debuggable": true,
+    "amber_trust_score": "5",
+    "amber_tcb_status": "CONFIG_NEEDED"
+}

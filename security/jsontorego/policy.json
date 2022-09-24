@@ -1,0 +1,21 @@
+{
+	"policy": {
+		"meta": {
+			"version": 1.0,
+			"id": "unique identifier for the policy, UUIDv4",
+			"description": {
+				"policy_type": "SGX Enclave",
+				"label": "unique label to be assigned to each policy"
+			}
+		},
+		"sgx": {
+			"isvprodid": [0, 2, 4],
+			"isvsvn": ">=1",
+			"mrenclave": ["bab91f200038076ac25f87de0ca67472443c2ebe17ed9ba195314e609038f51ab"],
+			"mrsigner": ["d412a4f07ef83892a5915fb2ab584be31e186e5a4f95ab5f6950fd4eb8694d7b"],
+			"isdebuggable": true,
+			"accepted_trust_score": ">=5",
+			"accepted_tcb_status": ["OK", "CONFIG_NEEDED", "SW_HARDENING_NEEDED"]
+		}
+	}
+}

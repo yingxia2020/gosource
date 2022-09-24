@@ -1,0 +1,12 @@
+### Utility to help convert JSON format policy to Rego format
+
+Usage of ./policy-tool:
+  -attType string
+        Supported attestation type (default "SGX")
+  -inputFile string
+        Input JSON format policy file (default "policy.json")
+  -outputFile string
+        Output Rego format policy file  (default "policy.rego")
+
+Output policy.rego file could be verified with the following web site with input data input.json:
+https://play.openpolicyagent.org/
