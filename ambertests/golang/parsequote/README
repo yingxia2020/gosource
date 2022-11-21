@@ -1,0 +1,9 @@
+Usage:
+./main binary quote.dat (optional: convert)
+./main base64 quote.txt
+
+Note:
+1. If add convert at the end of the command line, it will convert input file to another format,
+from binary to base64 or from base64 to binary.
+
+2. It is for SGX quote parsing only. TDX quote could be added if needed.

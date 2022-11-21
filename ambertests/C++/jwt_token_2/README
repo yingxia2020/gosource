@@ -1,0 +1,12 @@
+Use JWT C++ library:
+https://github.com/Thalhammer/jwt-cpp
+Need install library first
+
+Usage:
+$ g++ jwtdecode.cc -lcrypto
+$ ./a.out
+verification fail!
+typ = "JWT"
+kid = "0ceab98e1a2f6a02858fe735ad31aad8cd43d8ae"
+alg = "RS384"
+6162636465000000000000000000000000000000000000000000000000000000

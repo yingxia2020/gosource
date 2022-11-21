@@ -1,0 +1,7 @@
+Use cpp jwt library:
+https://github.com/arun11299/cpp-jwt
+Need install library first
+
+g++ jwt.cc -lssl -lcrypto -o verifytoken
+Usage:
+./verifytoken verify(true|false) tokenfilename keyfilename

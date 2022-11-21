@@ -1,0 +1,15 @@
+Use JWT C++ library:
+https://github.com/Thalhammer/jwt-cpp
+Need install library first
+
+Usage:
+$ g++ jwtdecode.cc -lcrypto
+$ ./a.out
+typ = "JWT"
+kid = "0ceab98e1a2f6a02858fe735ad31aad8cd43d8ae"
+jku = "https:\/\/www.intel.com\/amber\/certs"
+alg = "PS384"
+Matched policy number: 1
+Report data: 3191c068d89337ed89dbb56b69d717cdcea6e8549cacc3c4e6e052eb1f5e5cfb0000000000000000000000000000000000000000000000000000000000000000
+
+Note: Use unexpired token to pass verification check
